@@ -18,8 +18,6 @@ package com.example.android.chocolatenews;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.example.android.chocolatenews.Chocolate;
-
 import java.util.List;
 
 /**
@@ -27,9 +25,6 @@ import java.util.List;
  * network request to the given URL.
  */
 public class ChocolateLoader extends AsyncTaskLoader<List<Chocolate>> {
-
-    /** Tag for log messages */
-    private static final String LOG_TAG = ChocolateLoader.class.getName();
 
     /** Query URL */
     private String mUrl;
@@ -50,16 +45,14 @@ public class ChocolateLoader extends AsyncTaskLoader<List<Chocolate>> {
     }
 
     /**
-     * This is on a background thread.
+     * Background thread.
      */
     @Override
     public List<Chocolate> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
-
         // Perform the network request, parse the response, and extract a list of articles.
-        List<Chocolate> chocoArticles = QueryUtils.fetchChocolateData(mUrl);
-        return chocoArticles;
+        return QueryUtils.fetchChocolateData(mUrl);
     }
 }

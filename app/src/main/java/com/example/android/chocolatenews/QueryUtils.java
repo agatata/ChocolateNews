@@ -65,11 +65,8 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of Chocolate
-        List<Chocolate> chocoArticles = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of chocoAricles
-        return chocoArticles;
+        // Extract and return relevant fields from the JSON response and create a list of chocolate Articles
+        return extractFeatureFromJson(jsonResponse);
     }
 
     /**
