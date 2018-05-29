@@ -15,6 +15,7 @@
  */
 package com.example.android.chocolatenews;
 
+import android.nfc.Tag;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -181,13 +182,26 @@ public final class QueryUtils {
                 String title = currentArticle.getString("webTitle");
                 String sectionName = currentArticle.getString("sectionName");
                 String date = currentArticle.getString("webPublicationDate");
-                date = formatDate(date);
-                String author = currentArticle.getString("webUrl");
+                date = formatDate(date); // date convertion helper
+
+                //An article can have multiple contributor
+                List <String> tagList = new ArrayList <String>();
+
+                JSONArray tags = currentArticle.optJSONArray("tags");
+                if (tags != null) {
+                    for (int j = 0; j < tags.length(); j++) {
+                        JSONObject tag = tags.getJSONObject(j);
+                        String author = tag.getString("webTitle");
+                        if (author != null) {
+                            tagList.add(author);
+                        }
+                    }
+                }
                 String url = currentArticle.getString("webUrl");
 
                 // Create a new ChocoArticle object with the title, section name, date of puclication
                 // and url from the JSON response.
-                ChocoArticle chocolate = new ChocoArticle(title, sectionName, date, author, url);
+                ChocoArticle chocolate = new ChocoArticle(title, sectionName, date, tagList, url);
 
                 // Add the new chocolate article to the list.
                 chocoArticles.add(chocolate);

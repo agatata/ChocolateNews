@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
 
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String USGS_REQUEST_URL =
-            "https://content.guardianapis.com/search?q=chocolate&api-key=test";
+            "https://content.guardianapis.com/search?show-tags=contributor&q=chocolate&api-key=test";
     private static final int CHOCOLATE_LOADER_ID = 1;
     private ChocolateAdapter mAdapter;
     private TextView mEmptyStateTextView;

@@ -16,11 +16,15 @@
 package com.example.android.chocolatenews;
 
 import android.content.Context;
+import android.nfc.Tag;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
 import java.util.List;
 
 public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
@@ -28,7 +32,7 @@ public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
     /**
      * Construct a new ChocolateAdapter.
      *
-     * @param context of the app
+     * @param context       of the app
      * @param chocoArticles is the list of articles, which is the data source of the adapter
      */
     public ChocolateAdapter(Context context, List <ChocoArticle> chocoArticles) {
@@ -40,25 +44,45 @@ public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.chocolate_list_item, parent, false);
+            holder = new ViewHolder();
+            holder.titleView = convertView.findViewById(R.id.title_text_view);
+            holder.sectionView = convertView.findViewById(R.id.section_text_view);
+            holder.dateView = convertView.findViewById(R.id.date_text_view);
+            holder.authorView = convertView.findViewById(R.id.author_text_view);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
+
         // Find the article at the given position in the list
         ChocoArticle currentChocoArticle = getItem(position);
 
-        // Find all the TextViews and display appropriate data
-        TextView titleView = (TextView) listItemView.findViewById(R.id.title_text_view);
-        titleView.setText(currentChocoArticle.getTitle());
+        // display appropriate data
+        holder.titleView.setText(currentChocoArticle.getTitle());
+        holder.sectionView.setText(currentChocoArticle.getSection());
+        holder.dateView.setText(currentChocoArticle.getPublicationDate());
 
-        TextView sectionView = (TextView) listItemView.findViewById(R.id.section_text_view);
-        sectionView.setText(currentChocoArticle.getSection());
-
-        TextView dateView = (TextView) listItemView.findViewById(R.id.date_text_view);
-        dateView.setText(currentChocoArticle.getPublicationDate());
+        if (currentChocoArticle.getAuthor() != null && currentChocoArticle.getAuthor().size() > 0) {
+            String tag = currentChocoArticle.getAuthor().get(0).toString(); //Get the first Author
+            holder.authorView.setText(tag);
+        } else {
+            holder.authorView.setVisibility(View.GONE);
+        }
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
+    }
+
+    static class ViewHolder {
+        private TextView titleView;
+        private TextView sectionView;
+        private TextView dateView;
+        private TextView authorView;
     }
 }

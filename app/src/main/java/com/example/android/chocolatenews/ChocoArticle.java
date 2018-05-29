@@ -15,6 +15,9 @@
  */
 package com.example.android.chocolatenews;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A ChocoArticle object contains information related to a single chocolate article.
  */
@@ -32,7 +35,7 @@ public class ChocoArticle {
     /**
      * Author of publication
      */
-    private String artAuthor;
+    private List artAuthor;
 
     /** Website URL of the earthquake */
     private String artUrl;
@@ -46,7 +49,7 @@ public class ChocoArticle {
      * @param author is the author of publication
      * @param url is the website URL to read the whole article
      */
-    public ChocoArticle(String title, String section, String publicationDate, String author, String url) {
+    public ChocoArticle(String title, String section, String publicationDate, List author, String url) {
         artTitle = title;
         artSection = section;
         artPublicationDate = publicationDate;
@@ -68,7 +71,7 @@ public class ChocoArticle {
         return artPublicationDate;
     }
 
-    public String getAuthor() {
+    public List getAuthor() {
         return artAuthor;
     }
     public String getUrl() {
