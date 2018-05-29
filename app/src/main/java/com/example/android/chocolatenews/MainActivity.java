@@ -30,12 +30,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.android.chocolatenews.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderCallbacks <List <Chocolate>> {
+public class MainActivity extends AppCompatActivity implements LoaderCallbacks <List <ChocoArticle>> {
 
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String USGS_REQUEST_URL =
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         listView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of earthquakes as input and set it on the ListView
-        mAdapter = new ChocolateAdapter(this, new ArrayList <Chocolate>());
+        mAdapter = new ChocolateAdapter(this, new ArrayList <ChocoArticle>());
         listView.setAdapter(mAdapter);
 
         // Set an item click listener on the ListView, which sends an intent to a web browser
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
             @Override
             public void onItemClick(AdapterView <?> adapterView, View view, int position, long l) {
 
-                Chocolate currentChocoArticle = mAdapter.getItem(position);
+                ChocoArticle currentChocoArticle = mAdapter.getItem(position);
                 Uri articleUri = Uri.parse(currentChocoArticle.getUrl());
 
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, articleUri);
@@ -90,13 +88,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
     }
 
     @Override
-    public Loader <List <Chocolate>> onCreateLoader(int i, Bundle bundle) {
+    public Loader <List <ChocoArticle>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
         return new ChocolateLoader(this, USGS_REQUEST_URL);
     }
 
     @Override
-    public void onLoadFinished(Loader <List <Chocolate>> loader, List <Chocolate> articles) {
+    public void onLoadFinished(Loader <List <ChocoArticle>> loader, List <ChocoArticle> articles) {
         // Hide loading indicator because the data has been loaded
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
     }
 
     @Override
-    public void onLoaderReset(Loader <List <Chocolate>> loader) {
+    public void onLoaderReset(Loader <List <ChocoArticle>> loader) {
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
     }

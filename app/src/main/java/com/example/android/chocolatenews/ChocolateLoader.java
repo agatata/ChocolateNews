@@ -24,7 +24,7 @@ import java.util.List;
  * Loads a list of earthquakes by using an AsyncTask to perform the
  * network request to the given URL.
  */
-public class ChocolateLoader extends AsyncTaskLoader<List<Chocolate>> {
+public class ChocolateLoader extends AsyncTaskLoader <List <ChocoArticle>> {
 
     /** Query URL */
     private String mUrl;
@@ -48,7 +48,7 @@ public class ChocolateLoader extends AsyncTaskLoader<List<Chocolate>> {
      * Background thread.
      */
     @Override
-    public List<Chocolate> loadInBackground() {
+    public List <ChocoArticle> loadInBackground() {
         if (mUrl == null) {
             return null;
         }

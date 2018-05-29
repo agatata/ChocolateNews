@@ -16,50 +16,62 @@
 package com.example.android.chocolatenews;
 
 /**
- * A Chocolate object contains information related to a single chocolate article.
+ * A ChocoArticle object contains information related to a single chocolate article.
  */
-public class Chocolate {
+public class ChocoArticle {
 
     /** Title of the article */
-    private String mTitle;
+    private String artTitle;
 
     /** Section of the article */
-    private String mSection;
+    private String artSection;
 
     /** Date of publication */
-    private String mPublicationDate;
-
-    /** Website URL of the earthquake */
-    private String mUrl;
+    private String artPublicationDate;
 
     /**
-     * Constructs a new Chocolate object.
+     * Author of publication
+     */
+    private String artAuthor;
+
+    /** Website URL of the earthquake */
+    private String artUrl;
+
+    /**
+     * Constructs a new ChocoArticle object.
      *
      * @param title is the title of an article
      * @param section is the section of an article
      * @param publicationDate is the date of publication
+     * @param author is the author of publication
      * @param url is the website URL to read the whole article
      */
-    public Chocolate (String title, String section, String publicationDate, String url) {
-        mTitle = title;
-        mSection = section;
-        mPublicationDate = publicationDate;
-        mUrl = url;
+    public ChocoArticle(String title, String section, String publicationDate, String author, String url) {
+        artTitle = title;
+        artSection = section;
+        artPublicationDate = publicationDate;
+        artAuthor = author;
+        artUrl = url;
     }
 
     /**
      * Return the the proper data
      */
     public String getTitle() {
-        return mTitle;
+        return artTitle;
     }
     public String getSection() {
-        return mSection;
+        return artSection;
     }
+
     public String getPublicationDate() {
-        return mPublicationDate;
+        return artPublicationDate;
+    }
+
+    public String getAuthor() {
+        return artAuthor;
     }
     public String getUrl() {
-        return mUrl;
+        return artUrl;
     }
 }

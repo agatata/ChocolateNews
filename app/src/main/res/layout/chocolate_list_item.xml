@@ -52,6 +52,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             tools:text="20.07.2016" />
+
+        <TextView
+            android:id="@+id/author_text_view"
+            style="@style/ListDetailsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/date_text_view"
+            tools:text="Author Author" />
     </RelativeLayout>
 
     <View

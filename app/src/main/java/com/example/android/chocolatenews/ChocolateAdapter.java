@@ -23,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import java.util.List;
 
-public class ChocolateAdapter extends ArrayAdapter<Chocolate> {
+public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
 
     /**
      * Construct a new ChocolateAdapter.
@@ -31,7 +31,7 @@ public class ChocolateAdapter extends ArrayAdapter<Chocolate> {
      * @param context of the app
      * @param chocoArticles is the list of articles, which is the data source of the adapter
      */
-    public ChocolateAdapter(Context context, List<Chocolate> chocoArticles) {
+    public ChocolateAdapter(Context context, List <ChocoArticle> chocoArticles) {
         super(context, 0, chocoArticles);
     }
 
@@ -46,7 +46,7 @@ public class ChocolateAdapter extends ArrayAdapter<Chocolate> {
                     R.layout.chocolate_list_item, parent, false);
         }
         // Find the article at the given position in the list
-        Chocolate currentChocoArticle = getItem(position);
+        ChocoArticle currentChocoArticle = getItem(position);
 
         // Find all the TextViews and display appropriate data
         TextView titleView = (TextView) listItemView.findViewById(R.id.title_text_view);

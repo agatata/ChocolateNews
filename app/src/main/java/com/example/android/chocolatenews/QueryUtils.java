@@ -51,9 +51,9 @@ public final class QueryUtils {
     private QueryUtils() {
     }
 
-    // Query the USGS dataset and return a list of Chocolate objects.
+    // Query the USGS dataset and return a list of ChocoArticle objects.
 
-    public static List<Chocolate> fetchChocolateData(String requestUrl) {
+    public static List <ChocoArticle> fetchChocolateData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -145,17 +145,17 @@ public final class QueryUtils {
     }
 
     /**
-     * Return a list of Chocolate objects that has been built up from
+     * Return a list of ChocoArticle objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<Chocolate> extractFeatureFromJson(String chocolateJSON) {
+    private static List <ChocoArticle> extractFeatureFromJson(String chocolateJSON) {
 
         if (TextUtils.isEmpty(chocolateJSON)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding chocolate articles to
-        List<Chocolate> chocoArticles = new ArrayList<>();
+        List <ChocoArticle> chocoArticles = new ArrayList <>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -172,7 +172,7 @@ public final class QueryUtils {
             // which represents a list of articles about chocolate.
             JSONArray resultsArray = jsonResponse.getJSONArray("results");
 
-            // For each earthquake in the earthquakeArray, create an Chocolate object
+            // For each earthquake in the earthquakeArray, create an ChocoArticle object
             for (int i = 0; i < resultsArray.length(); i++) {
 
                 JSONObject currentArticle = resultsArray.getJSONObject(i);
@@ -182,11 +182,12 @@ public final class QueryUtils {
                 String sectionName = currentArticle.getString("sectionName");
                 String date = currentArticle.getString("webPublicationDate");
                 date = formatDate(date);
+                String author = currentArticle.getString("webUrl");
                 String url = currentArticle.getString("webUrl");
 
-                // Create a new Chocolate object with the title, section name, date of puclication
+                // Create a new ChocoArticle object with the title, section name, date of puclication
                 // and url from the JSON response.
-                Chocolate chocolate = new Chocolate(title, sectionName, date, url);
+                ChocoArticle chocolate = new ChocoArticle(title, sectionName, date, author, url);
 
                 // Add the new chocolate article to the list.
                 chocoArticles.add(chocolate);
