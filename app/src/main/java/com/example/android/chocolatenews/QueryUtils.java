@@ -183,8 +183,9 @@ public final class QueryUtils {
                 String date = currentArticle.getString("webPublicationDate");
                 date = formatDate(date); // date convertion helper
 
-                //An article can have multiple contributor
-                List <String> tagList = new ArrayList <String>();
+                // An article can have multiple contributor
+                // Thanks to https://github.com/tschmidtbhv/NewsApp/tree/master/app/src/main/java/com/example/android/newsapp
+                List <String> tagList = new ArrayList <>();
 
                 JSONArray tags = currentArticle.optJSONArray("tags");
                 if (tags != null) {
