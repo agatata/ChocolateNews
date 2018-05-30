@@ -16,15 +16,11 @@
 package com.example.android.chocolatenews;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
@@ -35,7 +31,7 @@ public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
      * @param context       of the app
      * @param chocoArticles is the list of articles, which is the data source of the adapter
      */
-    public ChocolateAdapter(Context context, List <ChocoArticle> chocoArticles) {
+    ChocolateAdapter(Context context, List <ChocoArticle> chocoArticles) {
         super(context, 0, chocoArticles);
     }
 
@@ -51,13 +47,13 @@ public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.chocolate_list_item, parent, false);
             holder = new ViewHolder();
-            holder.titleView = convertView.findViewById(R.id.title_text_view);
-            holder.sectionView = convertView.findViewById(R.id.section_text_view);
-            holder.dateView = convertView.findViewById(R.id.date_text_view);
-            holder.authorView = convertView.findViewById(R.id.author_text_view);
-            convertView.setTag(holder);
+            holder.titleView = listItemView.findViewById(R.id.title_text_view);
+            holder.sectionView = listItemView.findViewById(R.id.section_text_view);
+            holder.dateView = listItemView.findViewById(R.id.date_text_view);
+            holder.authorView = listItemView.findViewById(R.id.author_text_view);
+            listItemView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (ViewHolder) listItemView.getTag();
         }
 
         // Find the article at the given position in the list
@@ -79,7 +75,7 @@ public class ChocolateAdapter extends ArrayAdapter <ChocoArticle> {
         return listItemView;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         private TextView titleView;
         private TextView sectionView;
         private TextView dateView;

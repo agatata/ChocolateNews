@@ -15,7 +15,6 @@
  */
 package com.example.android.chocolatenews;
 
-import android.nfc.Tag;
 import android.text.TextUtils;
 import android.util.Log;
 

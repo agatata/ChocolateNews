@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 package com.example.android.chocolatenews;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -17,7 +17,6 @@ package com.example.android.chocolatenews;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-
 import java.util.List;
 
 /**
