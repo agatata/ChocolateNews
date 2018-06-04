@@ -20,11 +20,15 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -35,9 +39,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks <List <ChocoArticle>> {
 
+    public static final String JSON = "json";
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String USGS_REQUEST_URL =
-            "https://content.guardianapis.com/search?show-tags=contributor&q=chocolate&api-key=test";
+            "https://content.guardianapis.com/search";
+    // API student key
+    private static final String API_STUDENT_KEY = "f27a96ea-e41b-454d-a4e6-0cc9f2846a8a";
     private static final int CHOCOLATE_LOADER_ID = 1;
     private ChocolateAdapter mAdapter;
     private TextView mEmptyStateTextView;
@@ -48,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         setContentView(R.layout.activity_main);
 
         // Find a reference to the ListView in the layout
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         listView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of earthquakes as input and set it on the ListView
@@ -88,9 +95,34 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
     }
 
     @Override
+    // onCreateLoader instantiates and returns a new Loader for the given ID
     public Loader <List <ChocoArticle>> onCreateLoader(int i, Bundle bundle) {
-        // Create a new loader for the given URL
-        return new ChocolateLoader(this, USGS_REQUEST_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+
+
+        String displaySection = sharedPrefs.getString(
+                getString(R.string.settings_display_section_key),
+                getString(R.string.settings_display_section_default));
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
+
+        // buildUpon prepares the baseUri
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value
+        uriBuilder.appendQueryParameter("format", JSON);
+        uriBuilder.appendQueryParameter("q", "chocolate");
+        uriBuilder.appendQueryParameter("sectionName", displaySection);
+        // uriBuilder.appendQueryParameter("orderby", orderBy);
+
+        // Acess key from the Guardian API website
+        uriBuilder.appendQueryParameter(getString(R.string.api_key), API_STUDENT_KEY);
+        // Return the completed uri
+        return new ChocolateLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -99,13 +131,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
-        mEmptyStateTextView.setText(R.string.no_earthquakes);
+        // Set empty state text to display "No articles found."
+        mEmptyStateTextView.setText(R.string.no_articles);
 
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter of previous data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // If there is a valid list of articles, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (articles != null && !articles.isEmpty()) {
             mAdapter.addAll(articles);
@@ -116,5 +148,24 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
     public void onLoaderReset(Loader <List <ChocoArticle>> loader) {
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
+    }
+
+    // Initialize the contents of the Activity's options menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    // This method is called whenever an item in the options menu is selected.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

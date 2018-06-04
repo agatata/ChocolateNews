@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Title for the application. -->
-    <string name="app_name">Chocolate news</string>
+    <string name="app_name">Chocolate News</string>
 
-    <!-- Text to display in the list when there are no earthquakes -->
-    <string name="no_earthquakes">No articles found.</string>
-
+    <!-- Text to display in the list when there are no articles -->
+    <string name="no_articles">No articles found.</string>
     <!-- Error message when there is no internet connectivity -->
     <string name="no_internet_connection">No internet connection.</string>
+
+    <!-- Settings menu -->
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">Chocolate News Settings</string>
+
+    <!-- Strings For Displaying By Section [CHAR LIMIT=30] -->
+    <string name="settings_display_section_label">Display Section</string>
+    <string name="settings_display_section_key" translatable="false">sectionName</string>
+    <string name="settings_display_section_default" translatable="false">@string/settings_section_all_value</string>
+
+    <!-- Section names [CHAR LIMIT=20] -->
+    <string name="settings_section_all_label">All</string>
+    <string name="settings_section_all_value">""</string>
+
+    <string name="settings_section_business_label">Business</string>
+    <string name="settings_section_business_value">business</string>
+
+    <string name="settings_section_lifestyle_label">Life and Style</string>
+    <string name="settings_section_lifestyle_value">lifestyle</string>
+
+    <string name="settings_section_travel_label">Travel</string>
+    <string name="settings_section_travel_value">travel</string>
+
+    <string name="settings_section_worldnews_label">World News</string>
+    <string name="settings_section_worldnews_value">worldnews</string>
+
+
+    <!-- Label for order-by publication date option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_date_label">Date of publication</string>
+    <string name="settings_order_by_date_value" translatable="false">webPublicationDate</string>
+
+    <!-- Label for order-by author option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_author_label">Author</string>
+    <string name="settings_order_by_author_value" translatable="false">webTitle"</string>
+
+
+    <!-- Strings For Earliest Publication Date Preference [CHAR LIMIT=30] -->
+    <string name="settings_min_magnitude_label">Minimum Magnitude</string>
+    <string name="settings_min_magnitude_key" translatable="false">min_magnitude</string>
+    <string name="settings_min_magnitude_default" translatable="false">0</string>
+
+    <string name="api_key">api-key</string>
 </resources>
