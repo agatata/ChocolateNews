@@ -101,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-
-
         String displaySection = sharedPrefs.getString(
                 getString(R.string.settings_display_section_key),
                 getString(R.string.settings_display_section_default));
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         // Append query parameter and its value
         uriBuilder.appendQueryParameter("format", JSON);
         uriBuilder.appendQueryParameter("q", "chocolate");
-        uriBuilder.appendQueryParameter("sectionName", displaySection);
+        uriBuilder.appendQueryParameter("section", displaySection);
         // uriBuilder.appendQueryParameter("orderby", orderBy);
 
         // Acess key from the Guardian API website
