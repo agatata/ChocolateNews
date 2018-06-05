@@ -25,14 +25,13 @@
     <string name="settings_section_business_value">business</string>
 
     <string name="settings_section_lifestyle_label">Life and Style</string>
-    <string name="settings_section_lifestyle_value">lifestyle</string>
+    <string name="settings_section_lifestyle_value">lifeandstyle</string>
 
     <string name="settings_section_travel_label">Travel</string>
     <string name="settings_section_travel_value">travel</string>
 
-    <string name="settings_section_worldnews_label">World News</string>
-    <string name="settings_section_worldnews_value">worldnews</string>
-
+    <string name="settings_section_worldnews_label">News</string>
+    <string name="settings_section_worldnews_value">news</string>
 
     <!-- Label for order-by publication date option [CHAR LIMIT=20] -->
     <string name="settings_order_by_date_label">Date of publication</string>

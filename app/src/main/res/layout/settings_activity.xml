@@ -16,4 +16,6 @@
     android:name="com.example.android.chocolatenews.SettingsActivity$ChocolatePreferenceFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.chocolatenews.SettingsActivity"></fragment>
+    tools:context="com.example.android.chocolatenews.SettingsActivity">
+
+</fragment>
