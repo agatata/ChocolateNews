@@ -40,7 +40,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks <List <ChocoArticle>> {
 
     public static final String JSON = "json";
-    private static final String LOG_TAG = MainActivity.class.getName();
     private static final String USGS_REQUEST_URL =
             "https://content.guardianapis.com/search";
     // API student key
@@ -100,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String displaySection = sharedPrefs.getString(
                 getString(R.string.settings_display_section_key),
                 getString(R.string.settings_display_section_default));
@@ -120,14 +118,14 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         // Append query parameter and its value
         uriBuilder.appendQueryParameter(getString(R.string.query_parameter_format), JSON);
         uriBuilder.appendQueryParameter(getString(R.string.query_parameter_q), getString(R.string.query_entry_chocolate));
+        uriBuilder.appendQueryParameter(getString(R.string.query_parameter_show_tags), getString(R.string.query_entry_contributor));
         uriBuilder.appendQueryParameter(getString(R.string.query_parameter_orderby), orderByTime);
 
         // display selected section if its other than "All"
         if (!displaySection.equals(getString(R.string.settings_section_all_value))) {
             uriBuilder.appendQueryParameter(getString(R.string.query_parameter_section), displaySection);
         }
-
-        // Acess key from the Guardian API website
+        // access key from the Guardian API website
         uriBuilder.appendQueryParameter(getString(R.string.api_key), API_STUDENT_KEY);
         // Return the completed uri
         return new ChocolateLoader(this, uriBuilder.toString());
@@ -145,8 +143,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         // Clear the adapter of previous data
         mAdapter.clear();
 
-        // If there is a valid list of articles, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
+        // If there is a valid list of articles, then add them to the adapter's data set.
         if (articles != null && !articles.isEmpty()) {
             mAdapter.addAll(articles);
         }

@@ -39,21 +39,22 @@
     <string name="settings_order_time_default" translatable="false">@string/settings_order_time_relevance_value</string>
 
     <string name="settings_order_time_relevance_label">relevance</string>
-    <string name="settings_order_time_relevance_value">relevance</string>
+    <string name="settings_order_time_relevance_value" translatable="false">relevance</string>
 
     <string name="settings_order_time_newest_label">newest</string>
-    <string name="settings_order_time_newest_value">newest</string>
+    <string name="settings_order_time_newest_value" translatable="false">newest</string>
 
     <string name="settings_order_time_oldest_label">oldest</string>
-    <string name="settings_order_time_oldest_value">oldest</string>
+    <string name="settings_order_time_oldest_value" translatable="false">oldest</string>
 
     <string name="api_key">api-key</string>
 
-    <string name="query_parameter_section">section</string>
-    <string name="query_parameter_q">q</string>
-    <string name="query_parameter_format">format</string>
-    <string name="query_entry_chocolate">chocolate</string>
-
-    <string name="query_parameter_orderby">order-by</string>
+    <string name="query_parameter_section" translatable="false">section</string>
+    <string name="query_parameter_q" translatable="false">q</string>
+    <string name="query_parameter_format" translatable="false">format</string>
+    <string name="query_entry_chocolate" translatable="false">chocolate</string>
+    <string name="query_parameter_orderby" translatable="false">order-by</string>
+    <string name="query_parameter_show_tags" translatable="false">show-tags</string>
+    <string name="query_entry_contributor" translatable="false">contributor</string>
 
 </resources>
