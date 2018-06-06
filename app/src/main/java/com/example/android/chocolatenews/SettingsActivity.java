@@ -39,6 +39,9 @@ public class SettingsActivity extends AppCompatActivity {
 
             Preference displaySection = findPreference(getString(R.string.settings_display_section_key));
             bindPreferenceSummaryToValue(displaySection);
+
+            Preference orderPubTime = findPreference(getString(R.string.settings_order_time_key));
+            bindPreferenceSummaryToValue(orderPubTime);
         }
 
         @Override

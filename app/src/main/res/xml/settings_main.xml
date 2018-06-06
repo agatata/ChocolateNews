@@ -18,6 +18,13 @@
     android:title="@string/settings_title">
 
     <ListPreference
+        android:defaultValue="@string/settings_order_time_default"
+        android:entries="@array/settings_order_time_labels"
+        android:entryValues="@array/settings_order_time_values"
+        android:key="@string/settings_order_time_key"
+        android:title="@string/settings_order_time_label" />
+
+    <ListPreference
         android:defaultValue="@string/settings_display_section_default"
         android:entries="@array/settings_display_section_labels"
         android:entryValues="@array/settings_display_section_values"

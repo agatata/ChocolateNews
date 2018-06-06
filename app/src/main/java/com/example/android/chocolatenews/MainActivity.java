@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
                 getString(R.string.settings_display_section_key),
                 getString(R.string.settings_display_section_default));
 
+
+        String orderByTime = sharedPrefs.getString(
+                getString(R.string.settings_order_time_key),
+                getString(R.string.settings_order_time_default)
+        );
+
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
 
@@ -112,10 +118,14 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks <
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value
-        uriBuilder.appendQueryParameter("format", JSON);
-        uriBuilder.appendQueryParameter("q", "chocolate");
-        uriBuilder.appendQueryParameter("section", displaySection);
-        // uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter(getString(R.string.query_parameter_format), JSON);
+        uriBuilder.appendQueryParameter(getString(R.string.query_parameter_q), getString(R.string.query_entry_chocolate));
+        uriBuilder.appendQueryParameter(getString(R.string.query_parameter_orderby), orderByTime);
+
+        // display selected section if its other than "All"
+        if (!displaySection.equals(getString(R.string.settings_section_all_value))) {
+            uriBuilder.appendQueryParameter(getString(R.string.query_parameter_section), displaySection);
+        }
 
         // Acess key from the Guardian API website
         uriBuilder.appendQueryParameter(getString(R.string.api_key), API_STUDENT_KEY);

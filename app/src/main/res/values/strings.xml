@@ -19,7 +19,7 @@
 
     <!-- Section names [CHAR LIMIT=20] -->
     <string name="settings_section_all_label">All</string>
-    <string name="settings_section_all_value">""</string>
+    <string name="settings_section_all_value">all</string>
 
     <string name="settings_section_business_label">Business</string>
     <string name="settings_section_business_value">business</string>
@@ -33,19 +33,27 @@
     <string name="settings_section_worldnews_label">News</string>
     <string name="settings_section_worldnews_value">news</string>
 
-    <!-- Label for order-by publication date option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_date_label">Date of publication</string>
-    <string name="settings_order_by_date_value" translatable="false">webPublicationDate</string>
+    <!-- Strings For Displaying By Date of Publication [CHAR LIMIT=30] -->
+    <string name="settings_order_time_label">Order By</string>
+    <string name="settings_order_time_key" translatable="false">webPublicationDate</string>
+    <string name="settings_order_time_default" translatable="false">@string/settings_order_time_relevance_value</string>
 
-    <!-- Label for order-by author option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_author_label">Author</string>
-    <string name="settings_order_by_author_value" translatable="false">webTitle"</string>
+    <string name="settings_order_time_relevance_label">relevance</string>
+    <string name="settings_order_time_relevance_value">relevance</string>
 
+    <string name="settings_order_time_newest_label">newest</string>
+    <string name="settings_order_time_newest_value">newest</string>
 
-    <!-- Strings For Earliest Publication Date Preference [CHAR LIMIT=30] -->
-    <string name="settings_min_magnitude_label">Minimum Magnitude</string>
-    <string name="settings_min_magnitude_key" translatable="false">min_magnitude</string>
-    <string name="settings_min_magnitude_default" translatable="false">0</string>
+    <string name="settings_order_time_oldest_label">oldest</string>
+    <string name="settings_order_time_oldest_value">oldest</string>
 
     <string name="api_key">api-key</string>
+
+    <string name="query_parameter_section">section</string>
+    <string name="query_parameter_q">q</string>
+    <string name="query_parameter_format">format</string>
+    <string name="query_entry_chocolate">chocolate</string>
+
+    <string name="query_parameter_orderby">order-by</string>
+
 </resources>

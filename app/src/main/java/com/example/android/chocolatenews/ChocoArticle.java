@@ -47,7 +47,7 @@ public class ChocoArticle {
      * @param author is the author of publication
      * @param url is the website URL to read the whole article
      */
-    public ChocoArticle(String title, String section, String publicationDate, List author, String url) {
+    ChocoArticle(String title, String section, String publicationDate, List author, String url) {
         artTitle = title;
         artSection = section;
         artPublicationDate = publicationDate;
